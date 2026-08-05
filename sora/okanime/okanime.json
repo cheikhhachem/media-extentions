@@ -14,7 +14,7 @@
   "quality": "1080p",
   "baseUrl": "https://ww3.okanime.xyz",
   "searchBaseUrl": "https://ww3.okanime.xyz/anime-list?q=%s",
-  "scriptUrl": "REPLACE_WITH_THE_RAW_URL_OF_OKANIME_JS",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/okanime/okanime.js",
   "asyncJS": true,
   "type": "anime",
   "downloadSupport": false
