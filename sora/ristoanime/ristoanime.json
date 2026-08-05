@@ -1,0 +1,22 @@
+{
+  "sourceName": "Risto Anime",
+  "iconUrl": "https://ristoanime.me/favicon.ico",
+  "author": {
+    "name": "Cheikh Hachem",
+    "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
+    "url": "https://github.com/cheikhhachem"
+  },
+  "version": "1.0.0",
+  "language": "Arabic",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "HLS",
+  "quality": "1080p",
+  "baseUrl": "https://ristoanime.me",
+  "searchBaseUrl": "https://ristoanime.me/?s=%s",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/ristoanime/ristoanime.js",
+  "asyncJS": true,
+  "type": "anime",
+  "downloadSupport": false
+}
