@@ -64,7 +64,11 @@ async function extractEpisodes(url) {
         let match;
 
         while ((match = pattern.exec(html)) !== null) {
-            episodes.push({ href: absoluteUrl(match[1]), number: Number(match[2]) });
+            const episodeUrl = absoluteUrl(match[1]);
+            episodes.push({
+                href: episodeUrl.endsWith("/watch/") ? episodeUrl : episodeUrl + (episodeUrl.endsWith("/") ? "watch/" : "/watch/"),
+                number: Number(match[2])
+            });
         }
 
         episodes.sort((a, b) => a.number - b.number);
