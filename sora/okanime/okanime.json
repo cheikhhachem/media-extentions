@@ -1,0 +1,21 @@
+{
+  "sourceName": "Okanime",
+  "iconUrl": "https://ww3.okanime.xyz/assets/img/logos/okanime-128.png",
+  "author": {
+    "name": "Your Name",
+    "icon": "https://ww3.okanime.xyz/assets/img/logos/okanime-128.png"
+  },
+  "version": "1.0.0",
+  "language": "Arabic",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "HLS",
+  "quality": "1080p",
+  "baseUrl": "https://ww3.okanime.xyz",
+  "searchBaseUrl": "https://ww3.okanime.xyz/anime-list?q=%s",
+  "scriptUrl": "REPLACE_WITH_THE_RAW_URL_OF_OKANIME_JS",
+  "asyncJS": true,
+  "type": "anime",
+  "downloadSupport": false
+}
