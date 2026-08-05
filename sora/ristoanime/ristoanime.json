@@ -15,7 +15,7 @@
   "quality": "1080p",
   "baseUrl": "https://ristoanime.me",
   "searchBaseUrl": "https://ristoanime.me/?s=%s",
-  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/ristoanime/ristoanime.js",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/c7bbe0aff9117a7d6f059508330cec5f0d2bdd94/sora/ristoanime/ristoanime.js",
   "asyncJS": true,
   "type": "anime",
   "downloadSupport": false
