@@ -1,0 +1,22 @@
+{
+  "sourceName": "Aflam",
+  "iconUrl": "https://aflaam.com/favicon.png",
+  "author": {
+    "name": "Cheikh Hachem",
+    "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
+    "url": "https://github.com/cheikhhachem"
+  },
+  "version": "1.0.0",
+  "language": "Arabic",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "MP4",
+  "quality": "1080p",
+  "baseUrl": "https://aflaam.com",
+  "searchBaseUrl": "https://aflaam.com/search?q=%s",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/aflaam/aflaam.js",
+  "asyncJS": true,
+  "type": "movies/shows",
+  "downloadSupport": false
+}

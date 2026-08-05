@@ -8,6 +8,7 @@ Streaming extensions are grouped by application:
 
 Current extensions:
 
+- `sora/aflaam/`: Aflam Arabic-subbed movies and shows source.
 - `sora/okanime/`: Okanime Arabic-subbed anime source.
 - `sora/ristoanime/`: Risto Anime Arabic-subbed anime source.
 
