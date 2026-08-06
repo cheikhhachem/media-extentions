@@ -1,12 +1,12 @@
 {
   "sourceName": "IMDb.su",
-  "iconUrl": "https://imdb.su/favicon.ico",
+  "iconUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/imdb-su/icon.svg",
   "author": {
     "name": "Cheikh Hachem",
     "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
     "url": "https://github.com/cheikhhachem"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "language": "English",
   "languageType": [
     "Subbed"
