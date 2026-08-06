@@ -1,0 +1,22 @@
+{
+  "sourceName": "IMDb.su",
+  "iconUrl": "https://imdb.su/favicon.ico",
+  "author": {
+    "name": "Cheikh Hachem",
+    "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
+    "url": "https://github.com/cheikhhachem"
+  },
+  "version": "1.0.0",
+  "language": "English",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "HLS",
+  "quality": "1080p",
+  "baseUrl": "https://imdb.su",
+  "searchBaseUrl": "https://www.imdb.com/find/?q=%s",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/imdb-su/imdb-su.js",
+  "asyncJS": true,
+  "type": "movies/shows",
+  "downloadSupport": false
+}
