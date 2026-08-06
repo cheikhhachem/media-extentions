@@ -8,7 +8,7 @@ const mangayomiSources = [{
     typeSource: "single",
     itemType: 1,
     isNsfw: false,
-    version: "1.0.1",
+    version: "1.0.2",
     pkgPath: "anime/src/ar/aflaam.js"
 }];
 
@@ -24,7 +24,16 @@ class DefaultExtension extends MProvider {
     }
 
     text(value) {
-        return (value || "").replace(/<[^>]*>/g, "").replace(/&quot;/g, '"').replace(/&amp;/g, "&").trim();
+        const text = (value || "").replace(/<[^>]*>/g, "").replace(/&quot;/g, '"').replace(/&amp;/g, "&").trim();
+        if (!/[ØÙÃÂ\u0080-\u009f]/.test(text)) return text;
+        try {
+            return decodeURIComponent(Array.from(text).map(character => {
+                const code = character.charCodeAt(0);
+                return code < 256 ? "%" + code.toString(16).padStart(2, "0") : encodeURIComponent(character);
+            }).join(""));
+        } catch (_) {
+            return text;
+        }
     }
 
     parseList(html) {
@@ -55,7 +64,9 @@ class DefaultExtension extends MProvider {
 
     async getDetail(url) {
         const html = await this.html(url);
-        const description = this.text((html.match(/<meta property="og:description" content="([^"]*)"/i) || [null, ""])[1]);
+        const plot = (html.match(/id="movie-tab-2"[\s\S]*?<div class="widget-body">\s*<p[^>]*>\s*<p[^>]*>([\s\S]*?)<\/p>/i) || [null, ""])[1];
+        const meta = (html.match(/<meta property="og:description" content="([^"]*)"/i) || [null, ""])[1];
+        const description = this.text(plot || meta);
         const episodes = [];
         if (url.includes("/movie/")) {
             episodes.push({ name: "Movie", url: url });
