@@ -8,7 +8,7 @@ const mangayomiSources = [{
     typeSource: "single",
     itemType: 1,
     isNsfw: false,
-    version: "1.0.2",
+    version: "1.0.3",
     pkgPath: "anime/src/ar/aflaam.js"
 }];
 
@@ -16,7 +16,10 @@ class DefaultExtension extends MProvider {
     constructor() {
         super();
         this.client = new Client();
-        this.headers = { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36" };
+        this.headers = {
+            "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+        };
     }
 
     async html(url) {
