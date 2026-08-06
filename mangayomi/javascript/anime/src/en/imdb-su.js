@@ -1,4 +1,5 @@
 const mangayomiSources = [{
+    id: 255023163004,
     name: "IMDb.su",
     lang: "en",
     baseUrl: "https://imdb.su",
@@ -7,7 +8,7 @@ const mangayomiSources = [{
     typeSource: "single",
     itemType: 1,
     isNsfw: false,
-    version: "1.0.0",
+    version: "1.0.1",
     pkgPath: "anime/src/en/imdb-su.js"
 }];
 

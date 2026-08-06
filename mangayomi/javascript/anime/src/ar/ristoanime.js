@@ -1,4 +1,5 @@
 const mangayomiSources = [{
+    id: 255023163003,
     name: "Risto Anime",
     lang: "ar",
     baseUrl: "https://ristoanime.me",
@@ -7,7 +8,7 @@ const mangayomiSources = [{
     typeSource: "single",
     itemType: 1,
     isNsfw: false,
-    version: "1.0.0",
+    version: "1.0.1",
     pkgPath: "anime/src/ar/ristoanime.js"
 }];
 

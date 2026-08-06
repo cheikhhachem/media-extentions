@@ -1,4 +1,5 @@
 const mangayomiSources = [{
+    id: 255023163002,
     name: "Okanime",
     lang: "ar",
     baseUrl: "https://ww3.okanime.xyz",
@@ -7,7 +8,7 @@ const mangayomiSources = [{
     typeSource: "single",
     itemType: 1,
     isNsfw: false,
-    version: "1.0.0",
+    version: "1.0.1",
     pkgPath: "anime/src/ar/okanime.js"
 }];
 

@@ -1,6 +1,7 @@
 [
   {
     "name": "Aflam",
+    "id": 255023163001,
     "baseUrl": "https://aflaam.com",
     "lang": "ar",
     "typeSource": "single",
@@ -9,7 +10,7 @@
     "hasCloudflare": false,
     "sourceCodeUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/mangayomi/javascript/anime/src/ar/aflaam.js",
     "apiUrl": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -20,6 +21,7 @@
   },
   {
     "name": "Okanime",
+    "id": 255023163002,
     "baseUrl": "https://ww3.okanime.xyz",
     "lang": "ar",
     "typeSource": "single",
@@ -28,7 +30,7 @@
     "hasCloudflare": false,
     "sourceCodeUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/mangayomi/javascript/anime/src/ar/okanime.js",
     "apiUrl": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -39,6 +41,7 @@
   },
   {
     "name": "Risto Anime",
+    "id": 255023163003,
     "baseUrl": "https://ristoanime.me",
     "lang": "ar",
     "typeSource": "single",
@@ -47,7 +50,7 @@
     "hasCloudflare": false,
     "sourceCodeUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/mangayomi/javascript/anime/src/ar/ristoanime.js",
     "apiUrl": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -58,6 +61,7 @@
   },
   {
     "name": "IMDb.su",
+    "id": 255023163004,
     "baseUrl": "https://imdb.su",
     "lang": "en",
     "typeSource": "single",
@@ -66,7 +70,7 @@
     "hasCloudflare": false,
     "sourceCodeUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/mangayomi/javascript/anime/src/en/imdb-su.js",
     "apiUrl": "https://streamdata.vaplayer.ru",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
