@@ -23,9 +23,11 @@ function text(value) {
         .replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function searchTitle(value) {
+function searchTitle(value, keyword) {
+    const requestedYears = keyword.match(/\b20(?:0[1-9]|[1-9]\d)\b/g) || [];
     return value
         .replace(/اون\s+لاين|اونلاين|اولاين|مترجمة|مترجم|فيلم|مسلسل|كامل|الأول|الاول|الأخير|الاخير/g, " ")
+        .replace(/\b20(?:0[1-9]|[1-9]\d)\b/g, (year) => requestedYears.includes(year) ? year : " ")
         .replace(/\s+/g, " ").trim();
 }
 
@@ -80,7 +82,7 @@ async function searchResults(keyword) {
             results.push(result);
         }
 
-        for (const result of results) result.title = searchTitle(result.title);
+        for (const result of results) result.title = searchTitle(result.title, keyword);
 
         return JSON.stringify(results);
     } catch (error) {
