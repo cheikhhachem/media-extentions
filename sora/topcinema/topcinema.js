@@ -23,6 +23,12 @@ function text(value) {
         .replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function searchTitle(value) {
+    return value
+        .replace(/اون\s+لاين|اونلاين|اولاين|مترجمة|مترجم|فيلم|مسلسل|كامل|الأول|الاول|الأخير|الاخير/g, " ")
+        .replace(/\s+/g, " ").trim();
+}
+
 async function searchResults(keyword) {
     try {
         const html = await getText(BASE_URL + "/search/?query=" + encodeURIComponent(keyword) + "&type=all");
@@ -73,6 +79,8 @@ async function searchResults(keyword) {
             }
             results.push(result);
         }
+
+        for (const result of results) result.title = searchTitle(result.title);
 
         return JSON.stringify(results);
     } catch (error) {
