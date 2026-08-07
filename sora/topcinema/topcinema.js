@@ -26,7 +26,7 @@ function text(value) {
 function searchTitle(value, keyword) {
     const requestedYears = keyword.match(/\b20(?:0[1-9]|[1-9]\d)\b/g) || [];
     return value
-        .replace(/اون\s+لاين|اونلاين|اولاين|مترجمة|مترجم|فيلم|مسلسل|كامل|الأول|الاول|الأخير|الاخير/g, " ")
+        .replace(/اون\s+لاين|اونلاين|اولاين|مترجمة|مترجم|فيلم|مسلسل|انمي|أنمي|كامل|الأول|الاول|الأخيرة|الاخيرة|و|الأخير|الاخير/g, " ")
         .replace(/\b20(?:0[1-9]|[1-9]\d)\b/g, (year) => requestedYears.includes(year) ? year : " ")
         .replace(/\s+/g, " ").trim();
 }
@@ -46,7 +46,7 @@ async function searchResults(keyword) {
                 image: match[3] || match[4],
                 href: match[1]
             };
-            if (/^مسلسل\s/i.test(result.title)) {
+            if (/^(?:مسلسل|انمي|أنمي)\s/i.test(result.title)) {
                 const key = result.title
                     .replace(/\s+(?:الموسم|الحلقة)[\s\S]*$/, "")
                     .replace(/\s+(?:مترجم(?:ة)?|مدبلج(?:ة)?)[\s\S]*$/, "")
