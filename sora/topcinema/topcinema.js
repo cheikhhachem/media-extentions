@@ -27,15 +27,51 @@ async function searchResults(keyword) {
     try {
         const html = await getText(BASE_URL + "/search/?query=" + encodeURIComponent(keyword) + "&type=all");
         const results = [];
+        const entries = [];
+        const series = {};
         const pattern = /<div class="Small--Box">\s*<a href="([^"]+)" title="([^"]*)" class="recent--block">[\s\S]*?<div class="Poster">\s*<img[^>]+(?:data-src="([^"]+)"[^>]*|src="([^"]+)"[^>]*)>[\s\S]*?<h3 class="title">([\s\S]*?)<\/h3>\s*<\/a>\s*<\/div>/g;
         let match;
 
         while ((match = pattern.exec(html)) !== null) {
-            results.push({
+            const result = {
                 title: text(match[2] || match[5]),
                 image: match[3] || match[4],
                 href: match[1]
-            });
+            };
+            if (/^مسلسل\s/i.test(result.title)) {
+                const key = result.title
+                    .replace(/\s+(?:الموسم|الحلقة)[\s\S]*$/, "")
+                    .replace(/\s+(?:مترجم(?:ة)?|مدبلج(?:ة)?)[\s\S]*$/, "")
+                    .toLowerCase();
+                if (!series[key]) {
+                    series[key] = result;
+                    entries.push(key);
+                }
+            } else {
+                entries.push(result);
+            }
+        }
+
+        for (const entry of entries) {
+            if (typeof entry !== "string") {
+                results.push(entry);
+                continue;
+            }
+
+            const result = series[entry];
+            if (!result.href.includes("/series/")) {
+                const episodeHtml = await getText(result.href);
+                const parentPattern = /<a href="(https?:\/\/topcinemaa\.co\/series\/[^"]+)"[^>]*>\s*<span>([^<]+)<\/span>\s*<\/a>/gi;
+                let parent;
+                while ((parent = parentPattern.exec(episodeHtml)) !== null) {
+                    if (!/الموسم/.test(parent[2])) {
+                        result.href = parent[1];
+                        result.title = text(parent[2]);
+                        break;
+                    }
+                }
+            }
+            results.push(result);
         }
 
         return JSON.stringify(results);
