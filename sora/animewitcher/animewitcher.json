@@ -1,0 +1,22 @@
+{
+  "sourceName": "AnimeWitcher",
+  "iconUrl": "https://www.animewitcher.com/favicon.ico",
+  "author": {
+    "name": "Cheikh Hachem",
+    "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
+    "url": "https://github.com/cheikhhachem"
+  },
+  "version": "1.0.0",
+  "language": "Arabic",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "MP4",
+  "quality": "1080p",
+  "baseUrl": "https://www.animewitcher.com",
+  "searchBaseUrl": "https://www.animewitcher.com/search?q=%s",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/animewitcher/animewitcher.js",
+  "asyncJS": true,
+  "type": "anime",
+  "downloadSupport": true
+}
