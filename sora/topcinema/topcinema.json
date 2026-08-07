@@ -1,0 +1,22 @@
+{
+  "sourceName": "TopCinema",
+  "iconUrl": "https://topcinemaa.co/wp-content/uploads/2023/05/cropped-icon-192x192.png",
+  "author": {
+    "name": "Cheikh Hachem",
+    "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
+    "url": "https://github.com/cheikhhachem"
+  },
+  "version": "1.0.0",
+  "language": "Arabic",
+  "languageType": [
+    "Subbed"
+  ],
+  "streamType": "HLS",
+  "quality": "1080p",
+  "baseUrl": "https://topcinemaa.co",
+  "searchBaseUrl": "https://topcinemaa.co/search/?query=%s&type=all",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/topcinema/topcinema.js",
+  "asyncJS": true,
+  "type": "movies/shows",
+  "downloadSupport": false
+}

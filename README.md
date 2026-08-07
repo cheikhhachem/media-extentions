@@ -12,6 +12,7 @@ Current extensions:
 - `sora/okanime/`: Okanime Arabic-subbed anime source.
 - `sora/ristoanime/`: Risto Anime Arabic-subbed anime source.
 - `sora/imdb-su/`: IMDb ID-based movies and shows source with adaptive HLS streams.
+- `sora/topcinema/`: TopCinema Arabic-subbed movies and shows source.
 - `mangayomi/`: MangaYomi catalogue containing Aflam, Okanime, Risto Anime, and IMDb.su.
 
 ## Debugging
