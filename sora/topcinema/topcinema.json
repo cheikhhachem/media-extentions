@@ -15,7 +15,7 @@
   "quality": "1080p",
   "baseUrl": "https://topcinemaa.co",
   "searchBaseUrl": "https://topcinemaa.co/search/?query=%s&type=all",
-  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/topcinema/topcinema.js",
+  "scriptUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/aa19ed0/sora/topcinema/topcinema.js",
   "asyncJS": true,
   "type": "movies/shows",
   "downloadSupport": false
