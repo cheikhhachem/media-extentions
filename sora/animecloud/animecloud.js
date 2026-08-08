@@ -3,6 +3,7 @@ const API_HEADERS = {
     "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
     "User-Agent": "AnimeCloud/1.0 iOS"
 };
+let CRYPTO_JS = null;
 
 async function api(command, fields) {
     const values = Object.assign({ command: command }, fields || {});
@@ -101,15 +102,37 @@ async function decryptPlayback(payload) {
     return source.url;
 }
 
+async function decryptPlaybackWithCryptoJs(payload) {
+    if (!CRYPTO_JS) {
+        const response = await fetchv2("https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js");
+        const load = new Function("module", "exports", "define", await response.text() + ";return this.CryptoJS;");
+        CRYPTO_JS = load();
+    }
+
+    const encoded = payload.trim().replace(/^"|"$/g, "");
+    const hex = CRYPTO_JS.enc.Base64.parse(encoded).toString(CRYPTO_JS.enc.Hex);
+    const salt = CRYPTO_JS.enc.Hex.parse(hex.slice(4, 20));
+    const iv = CRYPTO_JS.enc.Hex.parse(hex.slice(36, 68));
+    const ciphertext = CRYPTO_JS.enc.Hex.parse(hex.slice(68, -64));
+    const key = CRYPTO_JS.PBKDF2("anime5w&f4H&434*", salt, {
+        keySize: 8,
+        iterations: 10000,
+        hasher: CRYPTO_JS.algo.SHA1
+    });
+    const plaintext = CRYPTO_JS.AES.decrypt({ ciphertext: ciphertext }, key, {
+        iv: iv,
+        mode: CRYPTO_JS.mode.CBC,
+        padding: CRYPTO_JS.pad.Pkcs7
+    }).toString(CRYPTO_JS.enc.Utf8);
+    const json = JSON.parse(plaintext);
+    const source = (json.result || [])[0] || json;
+    if (!source.url) throw new Error("No playable source returned");
+    return source.url;
+}
+
 async function encryptedStreamUrl(payload) {
     if (typeof crypto !== "undefined" && crypto.subtle) return decryptPlayback(payload);
-    if (typeof networkFetchSimpleFromHTML !== "function") throw new Error("Playback decryption is unavailable");
-
-    const html = "<script>(" + decryptPlayback.toString() + ")(" + JSON.stringify(payload) + ").then(function(url){"
-        + "window.webkit.messageHandlers.networkLogger.postMessage({url:url})"
-        + "})<\/script>";
-    const result = await networkFetchSimpleFromHTML(html, { timeoutSeconds: 2 });
-    return (result.requests || []).find((request) => /\/uploads2\/.*(?:token|expires)=/i.test(request)) || "";
+    return decryptPlaybackWithCryptoJs(payload);
 }
 
 async function extractStreamUrl(episodeId) {
