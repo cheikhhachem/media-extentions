@@ -1,12 +1,12 @@
 {
-  "sourceName": "Anime Cloud",
-  "iconUrl": "https://raw.githubusercontent.com/Lui35/AnimeCloud/main/AnimeCloud/Resources/Assets.xcassets/AppIcon.appiconset/AnimeCloudIcon.png",
+  "sourceName": "AnimeCloud",
+  "iconUrl": "https://raw.githubusercontent.com/cheikhhachem/media-extentions/master/sora/animecloud/icon.png",
   "author": {
     "name": "Cheikh Hachem",
     "icon": "https://avatars.githubusercontent.com/u/255023163?v=4",
     "url": "https://github.com/cheikhhachem"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "language": "Arabic",
   "languageType": [
     "Subbed"
