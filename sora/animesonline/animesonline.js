@@ -169,6 +169,8 @@ async function resolvePlayer(option, episodeUrl) {
         const source = embedUrl.match(/[?&]source=([^&]+)/i);
 
         if (source) {
+            // These MP4s use an hev1 tag that AVPlayer exposes as audio-only.
+            if (/fullhd\s*\/\s*hls/i.test(option.label)) return [];
             const streamUrl = decodeURIComponent(source[1]);
             const probe = await fetchv2(streamUrl, {
                 "User-Agent": USER_AGENT,
