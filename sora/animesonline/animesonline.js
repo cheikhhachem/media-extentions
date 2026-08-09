@@ -1,5 +1,6 @@
 const BASE_URL = "https://animesonline.cloud";
 const USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1";
+const PLAYER_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 let CRYPTO_JS_PROMISE = null;
 
 async function getText(url, referer) {
@@ -124,7 +125,8 @@ async function p2pStream(embedUrl) {
 async function bloggerStreams(embedUrl, label) {
     const token = decodeURIComponent(((embedUrl.match(/[?&]token=([^&]+)/) || [])[1]) || "");
     if (!token) return [];
-    const html = await getText(embedUrl);
+    const page = await fetchv2(embedUrl, { "User-Agent": PLAYER_USER_AGENT, "Referer": BASE_URL + "/" });
+    const html = await page.text();
     const sid = (html.match(/"FdrFJe":"([^"]+)/) || [])[1];
     const build = (html.match(/"cfb2h":"([^"]+)/) || [])[1];
     if (!sid || !build) return [];
@@ -140,16 +142,19 @@ async function bloggerStreams(embedUrl, label) {
         + "&bl=" + encodeURIComponent(build) + "&hl=en-US&_reqid=1&rt=c";
     const response = await fetchv2(endpoint, {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-        "User-Agent": USER_AGENT,
+        "User-Agent": PLAYER_USER_AGENT,
         "Referer": embedUrl
     }, "POST", "f.req=" + encodeURIComponent(request) + "&");
     const line = (await response.text()).split("\n").find((value) => value.startsWith("[[\"wrb.fr\""));
     if (!line) return [];
-    const payload = JSON.parse(JSON.parse(line)[0][2]);
+    const envelope = JSON.parse(line);
+    if (!envelope[0] || !envelope[0][2]) return [];
+    const payload = JSON.parse(envelope[0][2]);
+    if (!payload || !payload[2]) return [];
     return (payload[2] || []).map((source) => ({
         title: label + (Number((source[1] || [])[0]) === 22 ? " 720p" : " 360p"),
         streamUrl: source[0],
-        headers: { "Referer": "https://youtube.googleapis.com/", "User-Agent": USER_AGENT }
+        headers: { "Referer": "https://youtube.googleapis.com/" }
     }));
 }
 
@@ -172,17 +177,17 @@ async function resolvePlayer(option, episodeUrl) {
             });
             const body = await probe.text();
             if ((probe.status && probe.status !== 200 && probe.status !== 206) || /<html/i.test(body)) return [];
-            return [{ title: option.label, streamUrl: streamUrl, headers: { "Referer": BASE_URL + "/", "User-Agent": USER_AGENT } }];
+            return [{ title: option.label, streamUrl: streamUrl, headers: { "Referer": BASE_URL + "/" } }];
         }
 
         const p2pUrl = await p2pStream(embedUrl);
         if (p2pUrl) {
             const origin = (embedUrl.match(/^https?:\/\/[^/]+/) || [BASE_URL])[0];
             const provider = origin.includes("animeshd.cloud") ? "AnimesHD" : "STRP2P";
-            return [{ title: option.label + " HLS (" + provider + ")", streamUrl: p2pUrl, headers: { "Referer": origin + "/", "User-Agent": USER_AGENT } }];
+            return [{ title: option.label + " HLS (" + provider + ")", streamUrl: p2pUrl, headers: { "Referer": origin + "/" } }];
         }
 
-        if (/blogger\.com\/video/i.test(embedUrl)) return bloggerStreams(embedUrl, option.label);
+        if (/blogger\.com\/video/i.test(embedUrl)) return await bloggerStreams(embedUrl, option.label);
     } catch (error) {
         console.log("Animes Online provider " + option.label + " error: " + error);
     }
