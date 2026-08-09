@@ -15,6 +15,7 @@ Current extensions:
 - `sora/topcinema/`: TopCinema Arabic-subbed movies and shows source.
 - `sora/animewitcher/`: AnimeWitcher Arabic-subbed anime source.
 - `sora/animecloud/`: Anime Cloud Arabic-subbed anime source.
+- `sora/animesonline/`: Animes Online Portuguese-subbed anime source.
 - `mangayomi/`: MangaYomi catalogue containing Aflam, Okanime, Risto Anime, and IMDb.su.
 
 ## Debugging
